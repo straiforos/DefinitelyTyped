@@ -746,7 +746,7 @@ declare namespace Mocha {
          * @see https://mochajs.org/api/Mocha.reporters.Base.html
          */
         class Base {
-            constructor(runner: Runner, options?: { reporterOptions?: any; });
+            constructor(runner: Runner, options?: MochaOptions);
 
             /**
              * Test run statistics
@@ -1034,7 +1034,7 @@ declare namespace Mocha {
          * @see https://mochajs.org/api/Mocha.reporters.XUnit.html
          */
         class XUnit extends Base {
-            constructor(runner: Runner, options?: { reporterOptions?: XUnit.ReporterOptions });
+            constructor(runner: Runner, options?: XUnit.MochaOptions);
 
             /**
              * Override done to close the stream (if it's a file).
@@ -1059,6 +1059,10 @@ declare namespace Mocha {
         }
 
         namespace XUnit {
+            interface MochaOptions extends Mocha.MochaOptions {
+                reporterOptions?: ReporterOptions;
+            }
+
             interface ReporterOptions {
                 output?: string;
                 suiteName?: string;
@@ -1079,10 +1083,14 @@ declare namespace Mocha {
          * @see https://mochajs.org/api/Mocha.reporters.Progress.html
          */
         class Progress extends Base {
-            constructor(runner: Runner, options: { reporterOptions?: Progress.ReporterOptions; });
+            constructor(runner: Runner, options: Progress.MochaOptions);
         }
 
         namespace Progress {
+            export interface MochaOptions extends Mocha.MochaOptions {
+                reporterOptions?: ReporterOptions;
+            }
+
             interface ReporterOptions {
                 open?: string;
                 complete?: string;
