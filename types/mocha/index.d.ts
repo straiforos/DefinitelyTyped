@@ -1087,7 +1087,7 @@ declare namespace Mocha {
         }
 
         namespace Progress {
-            export interface MochaOptions extends Mocha.MochaOptions {
+            interface MochaOptions extends Mocha.MochaOptions {
                 reporterOptions?: ReporterOptions;
             }
 
@@ -2214,15 +2214,6 @@ declare namespace Mocha {
     }
 
     /**
-     * Options to pass to `mocha.setup` in the browser.
-     */
-    interface MochaSetupOptions extends MochaOptions {
-        // TODO: This does not seem to be supported according to the source. Should it be removed?
-        require?: string[];
-        fullTrace?: boolean;
-    }
-
-    /**
      * Third-party declarations that want to add new entries to the `Reporter` union can
      * contribute names here.
      */
@@ -2494,6 +2485,33 @@ declare global {
      */
     const mocha: BrowserMocha;
 
+    interface BrowserMocha extends Mocha {
+        /**
+         * Function to allow assertion libraries to throw errors directly into mocha.
+         * This is useful when running tests in a browser because window.onerror will
+         * only receive the 'message' attribute of the Error.
+         *
+         * - _Only supported in the browser._
+         */
+        throwError(err: any): never;
+
+        /**
+         * Setup mocha with the given settings options.
+         *
+         * - _Only supported in the browser._
+         */
+        setup(opts?: Mocha.Interface | MochaSetupOptions): this;
+    }
+
+    /**
+     * Options to pass to `mocha.setup` in the browser.
+     */
+    interface MochaSetupOptions extends Mocha.MochaOptions {
+        // TODO: This does not seem to be supported according to the source. Should it be removed?
+        require?: string[];
+        fullTrace?: boolean;
+    }
+
     // #endregion Browser augmentations
 
     // #region Deprecations
@@ -2505,22 +2523,4 @@ declare global {
     type ReporterConstructor = Mocha.ReporterConstructor;
 
     // #endregion Deprecations
-}
-
-interface BrowserMocha extends Mocha {
-    /**
-     * Function to allow assertion libraries to throw errors directly into mocha.
-     * This is useful when running tests in a browser because window.onerror will
-     * only receive the 'message' attribute of the Error.
-     *
-     * - _Only supported in the browser._
-     */
-    throwError(err: any): never;
-
-    /**
-     * Setup mocha with the given settings options.
-     *
-     * - _Only supported in the browser._
-     */
-    setup(opts?: Mocha.Interface | Mocha.MochaSetupOptions): this;
 }

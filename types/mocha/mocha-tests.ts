@@ -938,62 +938,62 @@ function test_browser_mocha_setup_all_options() {
 }
 
 function test_constructor_slow_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ slow: 25 });
 }
 
 function test_constructor_timeout_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ timeout: 25 });
 }
 
 function test_constructor_globals_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ globals: ['mocha'] });
 }
 
 function test_constructor_ui_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ ui: 'bdd' });
 }
 
 function test_constructor_reporter_string_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ reporter: 'html' });
 }
 
 function test_constructor_reporter_function_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ reporter: class extends LocalMocha.reporters.Base { } });
 }
 
 function test_constructor_bail_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ bail: false });
 }
 
 function test_constructor_ignore_leaks_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ ignoreLeaks: false });
 }
 
 function test_constructor_grep_string_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ grep: "describe" });
 }
 
 function test_constructor_grep_regex_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ grep: new RegExp('describe') });
 }
 
 function test_constructor_grep_regex_literal_option() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({ grep: /(expect|should)/i });
 }
 
 function test_constructor_all_options() {
-    // $ExpectType BrowserMocha
+    // $ExpectType Mocha
     new LocalMocha({
         slow: 25,
         timeout: 25,
