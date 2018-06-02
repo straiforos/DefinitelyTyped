@@ -2466,12 +2466,157 @@ declare global {
     // tslint:disable-next-line no-empty-interface
     interface HTMLLIElement { }
 
-    // Forward declaration for `NodeJS.EventEmitter` from node.d.ts.
-    // Required by Mocha.Runnable, Mocha.Runner, and Mocha.Suite.
-    // NOTE: Mocha *must not* have a direct dependency on @types/node.
     namespace NodeJS {
+        // Forward declaration for `NodeJS.EventEmitter` from node.d.ts.
+        // Required by Mocha.Runnable, Mocha.Runner, and Mocha.Suite.
+        // NOTE: Mocha *must not* have a direct dependency on @types/node.
         // tslint:disable-next-line no-empty-interface
         interface EventEmitter { }
+
+        // Augments NodeJS's `global` object when node.d.ts is loaded
+        interface Global {
+            /**
+             * Execute before running tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#before
+             */
+            before: typeof Mocha.before;
+
+            /**
+             * Execute before running tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#before
+             */
+            suiteSetup: typeof Mocha.suiteSetup;
+
+            /**
+             * Execute after running tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#after
+             */
+            after: typeof Mocha.after;
+
+            /**
+             * Execute after running tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#after
+             */
+            suiteTeardown: typeof Mocha.suiteTeardown;
+
+            /**
+             * Execute before each test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#beforeEach
+             */
+            beforeEach: typeof Mocha.beforeEach;
+
+            /**
+             * Execute before each test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#beforeEach
+             */
+            setup: typeof Mocha.setup;
+
+            /**
+             * Execute after each test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#afterEach
+             */
+            afterEach: typeof Mocha.afterEach;
+
+            /**
+             * Execute after each test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             *
+             * @see https://mochajs.org/api/global.html#afterEach
+             */
+            teardown: typeof Mocha.teardown;
+
+            /**
+             * Describe a "suite" containing nested suites and tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            describe: typeof Mocha.describe;
+
+            /**
+             * Describe a "suite" containing nested suites and tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            context: typeof Mocha.context;
+
+            /**
+             * Describe a "suite" containing nested suites and tests.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            suite: typeof Mocha.suite;
+
+            /**
+             * Pending suite.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            xdescribe: typeof Mocha.xdescribe;
+
+            /**
+             * Pending suite.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            xcontext: typeof Mocha.xcontext;
+
+            /**
+             * Describes a test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            it: typeof Mocha.it;
+
+            /**
+             * Describes a test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            specify: typeof Mocha.specify;
+
+            /**
+             * Describes a test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            test: typeof Mocha.test;
+
+            /**
+             * Describes a pending test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            xit: typeof Mocha.xit;
+
+            /**
+             * Describes a pending test case.
+             *
+             * - _Only available when invoked via the mocha CLI._
+             */
+            xspecify: typeof Mocha.xspecify;
+        }
     }
 
     // #endregion Reporter augmentations
