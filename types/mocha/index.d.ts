@@ -19,8 +19,8 @@ export as namespace Mocha;
  */
 declare class Mocha {
     private _growl;
-    protected _reporter: Mocha.ReporterConstructor;
-    protected _ui: Mocha.TestInterface;
+    private _reporter;
+    private _ui;
 
     constructor(options?: Mocha.MochaOptions);
 
