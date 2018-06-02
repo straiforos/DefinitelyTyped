@@ -58,46 +58,19 @@ const _xit2: typeof importedXit = xit;
 
 function test_bdd_describe() {
     // $ExpectType Suite
-    describe('something', function(done) {
-        // $ExpectType Done
-        done;
-
+    describe('something', function() {
         // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
-    describe('something', async function() {
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType Suite
-    describe.only('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType Suite
-    describe.only('something', async function() {
+    describe.only('something', function() {
         // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
-    describe.skip('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType void | Suite
-    describe.skip('something', async function() {
+    describe.skip('something', function() {
         // $ExpectType Suite
         this;
     });
@@ -105,46 +78,19 @@ function test_bdd_describe() {
 
 function test_bdd_context() {
     // $ExpectType Suite
-    context('something', function(done) {
-        // $ExpectType Done
-        done;
-
+    context('something', function() {
         // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
-    context('something', async function() {
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType Suite
-    context.only('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType Suite
-    context.only('something', async function() {
+    context.only('something', function() {
         // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
-    context.skip('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType void | Suite
-    context.skip('something', async function() {
+    context.skip('something', function() {
         // $ExpectType Suite
         this;
     });
@@ -152,16 +98,7 @@ function test_bdd_context() {
 
 function test_bdd_xdescribe() {
     // $ExpectType void | Suite
-    xdescribe('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType void | Suite
-    xdescribe('something', async function() {
+    xdescribe('something', function() {
         // $ExpectType Suite
         this;
     });
@@ -169,16 +106,7 @@ function test_bdd_xdescribe() {
 
 function test_bdd_xcontext() {
     // $ExpectType void | Suite
-    xcontext('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType void | Suite
-    xcontext('something', async function() {
+    xcontext('something', function() {
         // $ExpectType Suite
         this;
     });
@@ -186,46 +114,19 @@ function test_bdd_xcontext() {
 
 function test_tdd_suite() {
     // $ExpectType Suite
-    suite('something', function(done) {
-        // $ExpectType Done
-        done;
-
+    suite('something', function() {
         // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
-    suite('something', async function() {
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType Suite
-    suite.only('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType Suite
-    suite.only('something', async function() {
+    suite.only('something', function() {
         // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
-    suite.skip('something', function(done) {
-        // $ExpectType Done
-        done;
-
-        // $ExpectType Suite
-        this;
-    });
-
-    // $ExpectType void | Suite
-    suite.skip('something', async function() {
+    suite.skip('something', function() {
         // $ExpectType Suite
         this;
     });
@@ -1252,7 +1153,7 @@ function test_suite_events(suite: LocalMocha.Suite) {
 
     // $ExpectType Suite
     suite.on("pre-require", (context, file, mocha) => {
-        // $ExpectType any
+        // $ExpectType MochaGlobals
         context;
         // $ExpectType string
         file;
@@ -1272,7 +1173,7 @@ function test_suite_events(suite: LocalMocha.Suite) {
 
     // $ExpectType Suite
     suite.on("post-require", (context, file, mocha) => {
-        // $ExpectType any
+        // $ExpectType MochaGlobals
         context;
         // $ExpectType string
         file;
