@@ -2064,15 +2064,37 @@ declare namespace Mocha {
     // #endregion Suite "run" event
     // #region Suite "pre-require" event
     interface Suite extends NodeJS.EventEmitter {
-        on(event: "pre-require", listener: (context: Context) => void): this;
-        once(event: "pre-require", listener: (context: Context) => void): this;
-        addListener(event: "pre-require", listener: (context: Context) => void): this;
-        removeListener(event: "pre-require", listener: (context: Context) => void): this;
-        prependListener(event: "pre-require", listener: (context: Context) => void): this;
-        prependOnceListener(event: "pre-require", listener: (context: Context) => void): this;
-        emit(name: "pre-require", context: Context): boolean;
+        on(event: "pre-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        once(event: "pre-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        addListener(event: "pre-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        removeListener(event: "pre-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        prependListener(event: "pre-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        prependOnceListener(event: "pre-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        emit(name: "pre-require", context: any, file: string, mocha: Mocha): boolean;
     }
     // #endregion Suite "pre-require" event
+    // #region Suite "require" event
+    interface Suite extends NodeJS.EventEmitter {
+        on(event: "require", listener: (module: any, file: string, mocha: Mocha) => void): this;
+        once(event: "require", listener: (module: any, file: string, mocha: Mocha) => void): this;
+        addListener(event: "require", listener: (module: any, file: string, mocha: Mocha) => void): this;
+        removeListener(event: "require", listener: (module: any, file: string, mocha: Mocha) => void): this;
+        prependListener(event: "require", listener: (module: any, file: string, mocha: Mocha) => void): this;
+        prependOnceListener(event: "require", listener: (module: any, file: string, mocha: Mocha) => void): this;
+        emit(name: "require", module: any, file: string, mocha: Mocha): boolean;
+    }
+    // #endregion Suite "require" event
+    // #region Suite "post-require" event
+    interface Suite extends NodeJS.EventEmitter {
+        on(event: "post-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        once(event: "post-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        addListener(event: "post-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        removeListener(event: "post-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        prependListener(event: "post-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        prependOnceListener(event: "post-require", listener: (context: any, file: string, mocha: Mocha) => void): this;
+        emit(name: "post-require", context: any, file: string, mocha: Mocha): boolean;
+    }
+    // #endregion Suite "post-require" event
     // #region Suite untyped events
     interface Suite extends NodeJS.EventEmitter {
         on(event: string, listener: (...args: any[]) => void): this;

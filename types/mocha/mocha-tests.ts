@@ -1251,8 +1251,32 @@ function test_suite_events(suite: LocalMocha.Suite) {
     suite.on("run", () => { });
 
     // $ExpectType Suite
-    suite.on("pre-require", (context) => {
-        // $ExpectType Context
+    suite.on("pre-require", (context, file, mocha) => {
+        // $ExpectType any
         context;
+        // $ExpectType string
+        file;
+        // $ExpectType Mocha
+        mocha;
+    });
+
+    // $ExpectType Suite
+    suite.on("require", (module, file, mocha) => {
+        // $ExpectType any
+        module;
+        // $ExpectType string
+        file;
+        // $ExpectType Mocha
+        mocha;
+    });
+
+    // $ExpectType Suite
+    suite.on("post-require", (context, file, mocha) => {
+        // $ExpectType any
+        context;
+        // $ExpectType string
+        file;
+        // $ExpectType Mocha
+        mocha;
     });
 }
