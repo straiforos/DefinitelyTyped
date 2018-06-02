@@ -455,7 +455,7 @@ declare namespace Mocha {
          *
          * - _Only available when invoked via the mocha CLI._
          */
-        (title: string, fn: Func): Suite;
+        (title: string, fn: TFunc<Suite>): Suite;
 
         /**
          * [bdd, tdd] Describe a "suite" with the given `title` and callback `fn` containing
@@ -463,7 +463,7 @@ declare namespace Mocha {
          *
          * - _Only available when invoked via the mocha CLI._
          */
-        (title: string, fn: AsyncFunc): Suite;
+        (title: string, fn: TAsyncFunc<Suite>): Suite;
 
         /**
          * [qunit] Describe a "suite" with the given `title`.
@@ -494,7 +494,7 @@ declare namespace Mocha {
          *
          * - _Only available when invoked via the mocha CLI._
          */
-        (title: string, fn: Func): Suite;
+        (title: string, fn: TFunc<Suite>): Suite;
 
         /**
          * [bdd, tdd] Describe a "suite" with the given `title` and callback `fn` containing
@@ -502,7 +502,7 @@ declare namespace Mocha {
          *
          * - _Only available when invoked via the mocha CLI._
          */
-        (title: string, fn: AsyncFunc): Suite;
+        (title: string, fn: TAsyncFunc<Suite>): Suite;
 
         /**
          * [qunit] Describe a "suite" with the given `title`. Indicates this suite should be executed
@@ -523,7 +523,7 @@ declare namespace Mocha {
          * @returns [bdd] `Suite`
          * @returns [tdd] `void`
          */
-        (title: string, fn: Func): Suite | void;
+        (title: string, fn: TFunc<Suite>): Suite | void;
 
         /**
          * [bdd, tdd] Describe a "suite" with the given `title` and callback `fn` containing
@@ -534,7 +534,7 @@ declare namespace Mocha {
          * @returns [bdd] `Suite`
          * @returns [tdd] `void`
          */
-        (title: string, fn: AsyncFunc): Suite | void;
+        (title: string, fn: TAsyncFunc<Suite>): Suite | void;
     }
 
     /**
@@ -2143,12 +2143,22 @@ declare namespace Mocha {
     /**
      * Callback function used for tests and hooks.
      */
-    type Func = (this: Context, done: Done) => void;
+    type TFunc<This> = (this: This, done: Done) => void;
+
+    /**
+     * Callback function used for tests and hooks.
+     */
+    type Func = TFunc<Context>;
 
     /**
      * Async callback function used for tests and hooks.
      */
-    type AsyncFunc = (this: Context) => PromiseLike<void>;
+    type TAsyncFunc<This> = (this: This) => PromiseLike<void>;
+
+    /**
+     * Async callback function used for tests and hooks.
+     */
+    type AsyncFunc = TFunc<Context>;
 
     /**
      * Options to pass to Mocha.
@@ -2263,8 +2273,8 @@ declare namespace Mocha {
 
     // #region Deprecations
 
-    /** @deprecated use `Mocha.Context` instead. */
-    type ISuiteCallbackContext = Context;
+    /** @deprecated use `Mocha.Suite` instead. */
+    type ISuiteCallbackContext = Suite;
 
     /** @deprecated use `Mocha.Context` instead. */
     type IHookCallbackContext = Context;
