@@ -1342,8 +1342,6 @@ declare namespace Mocha {
     class Context {
         private _runnable;
 
-        private constructor();
-
         test?: Runnable;
         currentTest: Test;
 
