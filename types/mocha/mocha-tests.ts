@@ -59,16 +59,16 @@ const _xit2: typeof importedXit = xit;
 function test_bdd_describe() {
     // $ExpectType Suite
     describe('something', function(done) {
-        // $ExpectType Context
-        this;
-
         // $ExpectType Done
         done;
+
+        // $ExpectType Suite
+        this;
     });
 
     // $ExpectType Suite
     describe('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
@@ -77,13 +77,13 @@ function test_bdd_describe() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
     describe.only('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
@@ -92,13 +92,13 @@ function test_bdd_describe() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
     describe.skip('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 }
@@ -109,13 +109,13 @@ function test_bdd_context() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
     context('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
@@ -124,13 +124,13 @@ function test_bdd_context() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
     context.only('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
@@ -139,13 +139,13 @@ function test_bdd_context() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
     context.skip('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 }
@@ -156,13 +156,13 @@ function test_bdd_xdescribe() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
     xdescribe('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 }
@@ -173,13 +173,13 @@ function test_bdd_xcontext() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
     xcontext('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 }
@@ -190,13 +190,13 @@ function test_tdd_suite() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
     suite('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
@@ -205,13 +205,13 @@ function test_tdd_suite() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType Suite
     suite.only('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
@@ -220,13 +220,13 @@ function test_tdd_suite() {
         // $ExpectType Done
         done;
 
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 
     // $ExpectType void | Suite
     suite.skip('something', async function() {
-        // $ExpectType Context
+        // $ExpectType Suite
         this;
     });
 }
