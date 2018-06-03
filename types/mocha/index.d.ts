@@ -1126,11 +1126,11 @@ declare namespace Mocha {
         private _timeout;
         private _timeoutError;
 
-        constructor(title: string, fn: Func);
-        constructor(title: string, fn: AsyncFunc);
+        constructor(title: string, fn?: Func);
+        constructor(title: string, fn?: AsyncFunc);
 
         title: string;
-        fn: Func | AsyncFunc;
+        fn: Func | AsyncFunc | undefined;
         body: string;
         async: boolean;
         sync: boolean;
@@ -1733,6 +1733,7 @@ declare namespace Mocha {
         suites: Suite[];
         tests: Test[];
         pending: boolean;
+        file?: string;
         root: boolean;
         delayed: boolean;
         parent: Suite | undefined;
@@ -2488,7 +2489,7 @@ declare namespace Mocha {
     interface IRunnable extends NodeJS.EventEmitter {
         title: string;
         /** @deprecated `.fn` has type `Func | AsyncFunc` in `Mocha.Runnable`. */
-        fn: Function;
+        fn: Function | undefined;
         async: boolean;
         sync: boolean;
         timedOut: boolean;

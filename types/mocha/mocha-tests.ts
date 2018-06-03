@@ -1229,3 +1229,38 @@ function test_backcompat_XUnit(iRunner: Mocha.IRunner) {
 function test_backcompat_Progress(iRunner: Mocha.IRunner) {
     new LocalMocha.reporters.Progress(iRunner);
 }
+
+import common = require("mocha/lib/interfaces/common");
+
+function test_interfaces_common(suites: Mocha.Suite[], context: Mocha.MochaGlobals, localMocha: Mocha,
+    fn: Mocha.Func | Mocha.AsyncFunc, test: Mocha.Test) {
+    const funcs = common(suites, context, localMocha);
+    // $ExpectType CommonFunctions
+    funcs;
+
+    funcs.before(fn);
+    funcs.before(string, fn);
+    funcs.beforeEach(fn);
+    funcs.beforeEach(string, fn);
+    funcs.after(fn);
+    funcs.after(string, fn);
+    funcs.afterEach(fn);
+    funcs.afterEach(string, fn);
+
+    // $ExpectType Suite
+    funcs.suite.create({ title: string });
+    funcs.suite.create({ title: string, file: string, fn: () => {}, pending: boolean, isOnly: boolean });
+
+    // $ExpectType Suite
+    funcs.suite.only({ title: string });
+    funcs.suite.only({ title: string, file: string, fn: () => {}, pending: boolean, isOnly: boolean });
+
+    // $ExpectType Suite
+    funcs.suite.skip({ title: string });
+    funcs.suite.skip({ title: string, file: string, fn: () => {}, pending: boolean, isOnly: boolean });
+
+    // $ExpectType Test
+    funcs.test.only(mocha, test);
+    funcs.test.skip(string);
+    funcs.test.retries(number);
+}
